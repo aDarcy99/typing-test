@@ -2,16 +2,11 @@ class CustomTextInput{
     constructor(TextContainer){
         //DOM Node input element
         this.textContainer = TextContainer;
-        //Inner width of container accounting for both side of padding; Possibly bad idea to floor this number;
-        this.textContainer.innerWidth = 
-        Math.floor(this.textContainer.clientWidth - 
-        (parseFloat(window.getComputedStyle(this.textContainer).padding) * 2));
-        this.textContainer.currentLine = 0;
         this.text = "";
         this.active = false;
         this.cursor;
         //Allowed keys
-        this.alphabet = [
+        this.acceptedAlphabet = [
             "a",
             "b",
             "c",
@@ -39,7 +34,7 @@ class CustomTextInput{
             "y",
             "z"
         ];
-        this.punctuation = [
+        this.acceptedPunctuation = [
             ` `,
             `.`,
             `,`,
@@ -59,7 +54,7 @@ class CustomTextInput{
             `%`,
             `-`
         ];
-        this.numbers = [
+        this.acceptedNumbers = [
             `1`,
             `2`,
             `3`,
@@ -70,8 +65,7 @@ class CustomTextInput{
             `8`,
             `9`,
             `0`,
-        ]
-        //Focus event listener that applies keydown listener if focus
+        ];
         this.textContainer.addEventListener("focus", (Event) => {
             this.textContainer.textContent = this.text;
             this.active = true;
@@ -89,17 +83,17 @@ class CustomTextInput{
         //backspace key
         keyCode === "backspace" && this.text ? this.text = this.text.substring(0,this.text.length-1) : "";
         //punctuation key
-        if(this.punctuation.includes(keyCode)){
-            this.punctuation.forEach((punc) => {
+        if(this.acceptedPunctuation.includes(keyCode)){
+            this.acceptedPunctuation.forEach((punc) => {
                 keyCode === punc? this.text += Event.key: "";
             })
-        }else if(this.numbers.includes(keyCode)){
-            this.numbers.forEach((number) => {
+        }else if(this.acceptedNumbers.includes(keyCode)){
+            this.acceptedNumbers.forEach((number) => {
                 keyCode === number? this.text += Event.key : "";
             })
         }else{
             //alphabet key
-            this.alphabet.forEach((letter) => {
+            this.acceptedAlphabet.forEach((letter) => {
                 if(keyCode === letter){
                     this.text += Event.key;
                 }
