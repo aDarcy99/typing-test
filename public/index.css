@@ -1,25 +1,33 @@
 .text-input{
+    /*Stops user from being able to select text inside text-input*/
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    outline: 0;
-    overflow-y: scroll;
+
+    overflow-y: auto;
 
     height: 3em;
     width: 20em;
     padding: 0.2em;
     margin-bottom: 1em;
-    word-wrap: break-word;
-    cursor: text;
-    font-size: 2em;
     border: 1px solid rgb(15, 14, 14);
+    
+    font-size: 2em;
 }
 
 .cursor::after{
     position: relative;
     top:-0.1em;
     content: "|";
+}
+.test-text{
+    width: 20em;
+    padding: 0.2em;
+    margin-bottom: 1em;
+    border: 1px solid rgb(15, 14, 14);
+
+    font-size: 2em;
 }
 
